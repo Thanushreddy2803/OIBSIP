@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=3.0">
+    <style>
+        body {
+            font-family: system-ui,  'Segoe UI',  'Open Sans', 'Helvetica Neue', sans-serif;
+            text-align: center;
+            margin: 300px;
+            background-image: Url("https://wallpapercave.com/wp/wp4077234.jpg");
+            background-repeat: no-repeat;
+            background-position-x: center;
+            font-style: italic;
+            font-size: 110%;
+        }
+        input, select{
+            margin: auto;
+            padding: 5px;
+            font-style: italic;
+        }
+        button{
+            margin:auto;
+            width: 100px;
+            border-color: aliceblue;
+            border-radius: 10px;
+            cursor: pointer;
+            font-style: italic;
+        }
+
+        
+    </style>
+    <title>TEMPERATURE CONVERTER </title>
+</head>
+<body>
+    <h2 style=" margin-top:auto;margin-bottom: 100px; font-family: Verdana, Geneva, Tahoma, sans-serif; text-align:center;font-size: 200%;font-style: italic;">Temperature  Converter</h2>
+    
+    <label for="temperature">Temperature:</label>
+    <input type="text" id="temperature" placeholder="Enter temperature" />
+
+    <label for="fromunit">From Unit:</label>
+    <select id="fromunit">
+        <option value="celsius"> Celsius</option>
+        <option value="fahrenheit">Fahrenheit</option>
+    </select>
+    <label for="tounit">To Unit:</label>
+    <select id="tounit">
+        <option value="celsius"> Celsius</option>
+        <option value="fahrenheit">Fahrenheit</option>
+    </select>
+    <br>
+    <br>
+    <br>
+
+    <button onclick="convertTemperature()">Convert</button>
+
+    <div id="result"></div>
+
+    <script>
+        function convertTemperature() {
+            var temperatureInput = document.getElementById('temperature').value;
+            var FromUnit = document.getElementById('fromunit').value;
+            var ToUnit = document.getElementById('tounit').value;
+            var resultContainer = document.getElementById('result');
+            var convertedTemperature;
+
+            if (isNaN(temperatureInput)) {
+                resultContainer.innerHTML = 'Entered input is incorrect.';
+                return;
+            }
+
+            var temperature = parseFloat(temperatureInput);
+
+            if (FromUnit === 'celsius') {
+                if(ToUnit === 'fahrenheit'){
+                    convertedTemperature = (temperature * 9/5) + 32;
+                resultContainer.innerHTML = 'Converted Temperature: ' + convertedTemperature.toFixed(2) + ' degree Fahrenheit';
+
+                }
+                else{
+                    convertedTemperature= temperature;
+                resultContainer.innerHTML = 'Converted Temperature: ' + convertedTemperature + ' degree Celsius';
+                }
+                
+            } else if (FromUnit === 'fahrenheit') {
+                if(ToUnit === 'celsius'){
+                    convertedTemperature = (temperature - 32) * 5/9;
+                resultContainer.innerHTML = 'Converted Temperature: ' + convertedTemperature.toFixed(2) + '  degree Celsius';
+                }
+                else{
+                    convertedTemperature= temperature;
+                resultContainer.innerHTML = 'Converted Temperature: ' + convertedTemperature + '  degree Fahrenheit';
+                }
+                
+            }
+        }
+    </script>
+</body>
+</html>
